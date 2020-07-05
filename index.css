@@ -33,6 +33,7 @@ header span {
 
 canvas {
 	display: block;
+	position: fixed;
 }
 
 #content{
