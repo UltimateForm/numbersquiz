@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Numbers Quiz</title>
+	<link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+	<div id="background_container"></div>
+	<script type="module" src="js/background.js"></script>
+	<header>
+		<span onclick="changeTheme(this)">Switch to Trivia</span>
+		<!-- 0=Math, 1=Trivia -->
+	</header>
+	<div id="question_board">
+		<h1 id="question_title">0</h1>
+		<div id="answers_grid">
+			<div onclick="answerClick(0)">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+				magna aliqua.
+			</div>
+			<div onclick="answerClick(1)">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+				magna aliqua.
+			</div>
+			<div onclick="answerClick(2)">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+				magna aliqua.
+			</div>
+			<div onclick="answerClick(3)">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+				magna aliqua.
+			</div>
+		</div>
+	</div>
+	<script src="js/boardlogic.js"></script>
+</body>
+
+
+</html>
