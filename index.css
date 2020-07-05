@@ -33,6 +33,9 @@ header span {
 
 canvas {
 	display: block;
+}
+
+#background_container{
 	position: fixed;
 }
 
