@@ -37,7 +37,7 @@ async function loadData() {
 	const answers = shuffleArray([trueAnswer, ...mock_answers])
 
 	checkAnswer = function (selectedAnswerIndex) { //this way i dont spread trueAnswer outside of scope, user can still google it of course, but cmon...
-		questionboard.classList.add("disable_pointer_events");
+		questionboard.classList.remove("enable_pointer_events");
 		const selectedDiv = answersgrid.children[selectedAnswerIndex];
 		const selectedAnswer = selectedDiv.textContent; //these could be collapsed into a one line expression but i wanna keep it readable
 		const correct = selectedAnswer === trueAnswer;
@@ -67,6 +67,7 @@ async function loadDataIntoBoard(level, answers) {
 		answersgrid.children[i].textContent = answer;
 	});
 	title.textContent = level;
+	questionboard.classList.remove("hide");
 	title.classList.add("title_animation");
 	answersgrid.classList.add("answers_animation");
 }

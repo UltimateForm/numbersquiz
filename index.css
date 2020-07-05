@@ -10,6 +10,20 @@ body {
 	background-color: #222831;
 }
 
+@media (max-width:688px){
+	body {
+		margin: 0;
+		position: relative;
+		font-family: Arial, Helvetica, sans-serif;
+		color: white;
+		font-size: medium;
+		overflow: hidden;
+		width: 100vw;
+		height: var(--app-height);
+		background-color: #222831;
+	}
+}
+
 header {
 	display: flex;
 	width: 100%;
@@ -35,18 +49,23 @@ canvas {
 	display: block;
 }
 
-#background_container{
+#background_container {
 	position: fixed;
 }
 
-#content{
-	width: 100vw;
+#content {
+	width: 100%;
 	position: absolute;
-	height: 100vh;
+	height: 100%;
 	top: 0px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
+	pointer-events: none;
+}
+
+.hide {
+	display: none !important;
 }
 
 #question_board {
@@ -148,6 +167,6 @@ canvas {
 	transition: all 1s;
 }
 
-.disable_pointer_events {
-	pointer-events: none;
+.enable_pointer_events {
+	pointer-events: all;
 }

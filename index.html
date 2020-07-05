@@ -13,10 +13,10 @@
 	<script type="module" src="js/background.js"></script>
 	<div id="content">
 		<header>
-			<span onclick="changeTheme(this)">Switch to Trivia</span>
+			<span class="enable_pointer_events" onclick="changeTheme(this)">Switch to Trivia</span>
 			<!-- 0=Math, 1=Trivia -->
 		</header>
-		<div id="question_board">
+		<div id="question_board" class="enable_pointer_events hide">
 			<h1 id="question_title">0</h1>
 			<div id="answers_grid">
 				<div onclick="answerClick(0)">
@@ -39,7 +39,14 @@
 		</div>
 		<script src="js/boardlogic.js"></script>
 	</div>
-
+	<script>
+		const appHeight = () => {
+			const doc = document.documentElement
+			doc.style.setProperty('--app-height', `${window.innerHeight}px`)
+		}
+		window.addEventListener('resize', appHeight)
+		appHeight()
+	</script>
 </body>
 
 

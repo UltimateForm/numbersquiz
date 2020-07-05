@@ -32,7 +32,7 @@ function init() {
 
 	// controls
 	controls = new OrbitControls(camera, renderer.domElement);
-	controls.auto = true;
+	controls.autoRotate = true;
 	controls.enableZoom = false;
 	controls.enablePan = false;
 
