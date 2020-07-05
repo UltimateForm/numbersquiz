@@ -73,6 +73,7 @@ canvas {
 	margin-right: auto;
 	width: 100%;
 	text-align: -webkit-center;
+	text-align: -moz-center;
 }
 
 #question_title {

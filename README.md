@@ -1,7 +1,5 @@
 # numbersquiz
-A quiz built based on http://numbersapi.com/
+A quiz built based on https://numbersapi.p.rapidapi.com
 
 
 deployed at https://ultimateform.github.io/numbersquiz/
-
-optimized for webkit browsers (bad with firefox)
