@@ -20,23 +20,33 @@ function maskAnswer(answer) {
 }
 
 function getTheme() { //for scalability purposes
-	return theme === 0? "math":"trivia";
+	return theme === 0 ? "math" : "trivia";
 }
+
+const rapidApiNumbers = {
+	headers: {
+		"x-rapidapi-host": "numbersapi.p.rapidapi.com",
+		"x-rapidapi-key": "d2093f0d1cmsh183927df906d653p13bf73jsn783327a068e1"
+	}
+} //just let it be
+
 
 async function loadData() {
 	level = Number.parseInt(window.localStorage.getItem("level")) || 0;
 	const questionBoardChildCount = answersgrid.childElementCount;
-	const data = await fetch(`https://cors-anywhere.herokuapp.com/http://numbersapi.com/${level}/${getTheme()}`);
+	const data = await fetch(`https://numbersapi.p.rapidapi.com/${level}/${getTheme()}`, { method: "GET", headers: rapidApiNumbers.headers });
+	///const data = await fetch(`https://cors-anywhere.herokuapp.com/http://numbersapi.com/${level}/${getTheme()}`);
 	if (data.status < 200 || data.status >= 300) return Promise.reject(data.statusText);
 	const trueAnswerOrigin = await data.text();
 	const trueAnswer = maskAnswer(trueAnswerOrigin);
-	const mocks = await Promise.all(Array(questionBoardChildCount - 1).fill(`https://cors-anywhere.herokuapp.com/http://numbersapi.com/random/${getTheme()}?max=9999`).map(url => fetch(url)));
-	if (mocks.some(m => m.status < 200 || data.status >= 300)) return Promise.reject(`https://cors-anywhere.herokuapp.com/http://numbersapi.com/random/${getTheme()}??max=9999 failed request`);
+	const mocks = await Promise.all(Array(questionBoardChildCount - 1).fill(`https://numbersapi.p.rapidapi.com/random/${getTheme()}?max=9999`).map(url => fetch(url,  { method: "GET", headers: rapidApiNumbers.headers })));
+	//const mocks = await Promise.all(Array(questionBoardChildCount - 1).fill(`https://cors-anywhere.herokuapp.com/http://numbersapi.com/random/${getTheme()}?max=9999`).map(url => fetch(url)));
+	if (mocks.some(m => m.status < 200 || data.status >= 300)) return Promise.reject(`https://numbersapi.p.rapidapi.com/random/${getTheme()}?max=9999 failed request`);
 	let mock_answers = await Promise.all(mocks.map(m => m.text()));
 	mock_answers = mock_answers.map(ma => maskAnswer(ma));
 	const answers = shuffleArray([trueAnswer, ...mock_answers])
 
-	checkAnswer = function (selectedAnswerIndex) { //this way i dont spread trueAnswer outside of scope, user can still google it of course, but cmon...
+	checkAnswer = function (selectedAnswerIndex) { //this way i dont spread trueAnswer outside of scope, user can still google it of course, but cmon... but it's so ugly...
 		questionboard.classList.remove("enable_pointer_events");
 		const selectedDiv = answersgrid.children[selectedAnswerIndex];
 		const selectedAnswer = selectedDiv.textContent; //these could be collapsed into a one line expression but i wanna keep it readable

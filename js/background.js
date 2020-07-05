@@ -2,7 +2,7 @@ import * as THREE from 'https://unpkg.com/three@0.118.3/build/three.module.js';
 import { OrbitControls } from "https://unpkg.com/three@0.118.3/examples/jsm/controls/OrbitControls.js";
 
 var container;
-var camera, controls, scene, renderer, material, objects;
+var camera, controls, scene, renderer, windowHalfX, objects;
 
 function init() {
 	objects = [];
@@ -73,7 +73,7 @@ function createMeshes() {
 						return;
 		
 				*/
-		for (var i = 0; i < 500; i++) {
+		for (var i = 0; i < 250; i++) {
 			var n = Math.floor(Math.random() * (10 - 1)) + 1;
 			var geometry = new THREE.TextGeometry(n.toString(), {
 				font: font,
