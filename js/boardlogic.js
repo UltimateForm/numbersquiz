@@ -26,12 +26,12 @@ function getTheme() { //for scalability purposes
 async function loadData() {
 	level = Number.parseInt(window.localStorage.getItem("level")) || 0;
 	const questionBoardChildCount = answersgrid.childElementCount;
-	const data = await fetch(`https://numbersapi.com/${level}/${getTheme()}`);
+	const data = await fetch(`http://numbersapi.com/${level}/${getTheme()}`);
 	if (data.status < 200 || data.status >= 300) return Promise.reject(data.statusText);
 	const trueAnswerOrigin = await data.text();
 	const trueAnswer = maskAnswer(trueAnswerOrigin);
-	const mocks = await Promise.all(Array(questionBoardChildCount - 1).fill(`https://numbersapi.com/random/${getTheme()}?max=9999`).map(url => fetch(url)));
-	if (mocks.some(m => m.status < 200 || data.status >= 300)) return Promise.reject(`https://numbersapi.com/random/${getTheme()}??max=9999 failed request`);
+	const mocks = await Promise.all(Array(questionBoardChildCount - 1).fill(`http://numbersapi.com/random/${getTheme()}?max=9999`).map(url => fetch(url)));
+	if (mocks.some(m => m.status < 200 || data.status >= 300)) return Promise.reject(`http://numbersapi.com/random/${getTheme()}??max=9999 failed request`);
 	let mock_answers = await Promise.all(mocks.map(m => m.text()));
 	mock_answers = mock_answers.map(ma => maskAnswer(ma));
 	const answers = shuffleArray([trueAnswer, ...mock_answers])
