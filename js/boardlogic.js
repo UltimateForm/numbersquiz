@@ -26,7 +26,7 @@ function getTheme() { //for scalability purposes
 async function loadData() {
 	level = Number.parseInt(window.localStorage.getItem("level")) || 0;
 	const questionBoardChildCount = answersgrid.childElementCount;
-	const data = await fetch(`http://numbersapi.com/${level}/${getTheme()}`);
+	const data = await fetch(`https://numbersapi.com/${level}/${getTheme()}`);
 	if (data.status < 200 || data.status >= 300) return Promise.reject(data.statusText);
 	const trueAnswerOrigin = await data.text();
 	const trueAnswer = maskAnswer(trueAnswerOrigin);
